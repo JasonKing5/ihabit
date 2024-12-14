@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInstance';
+import axiosInstance from '../axiosInstance'
 
 export const getUsers = async () => {
   try {
@@ -7,5 +7,5 @@ export const getUsers = async () => {
     return response
   } catch (error) {
     console.error(error)
-  };
+  }
 }
