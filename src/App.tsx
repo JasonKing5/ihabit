@@ -1,10 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { getUsers } from './api/user'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const fetchData = async () => {
+    const response = await getUsers()
+    console.log('page app: ', response)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <>
@@ -16,7 +26,7 @@ function App() {
         <h1 className="text-4xl font-bold text-blue-500">Hello TailwindCSS!</h1>
       </div>
       <div className='mt-8'>
-        <button onClick={() => setCount(count+1)} className='px-6 py-3 bg-blue-500 text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-blue-600 hover:scale-105 transition-transform duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50'>
+        <button onClick={() => setCount(count + 1)} className='px-6 py-3 bg-blue-500 text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-blue-600 hover:scale-105 transition-transform duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50'>
           {`Count ${count}`}
         </button>
       </div>
