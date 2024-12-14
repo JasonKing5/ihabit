@@ -3,9 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { getUsers } from './api/user'
+import useStore from './store/useStore'
 
 function App() {
   const [count, setCount] = useState(0)
+  const { user, setUser } = useStore()
 
   const fetchData = async () => {
     const response = await getUsers()
@@ -18,6 +20,15 @@ function App() {
 
   return (
     <>
+      <div className="p-5">
+        <h1 className="text-xl font-bold">Welcome {user || 'Guest'}</h1>
+        <button
+          className="mt-2 p-2 bg-blue-500 text-white"
+          onClick={() => setUser(user ? null : 'User123')}
+        >
+          {user ? 'Logout' : 'Login'}
+        </button>
+      </div>
       <div className="flex justify-center items-center h-64">
         <img
           src={viteLogo}
